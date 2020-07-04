@@ -44,6 +44,7 @@ $recibir=$_GET['ir'];
  $query=$connect->query("SELECT * FROM avion WHERE idavion=".$recibir);
      while($row = mysqli_fetch_array($query)) {
      	$estado=$row['estado'];
+     	$matricula=$row['matricula'];
 
      	}
 
@@ -66,14 +67,15 @@ $connect->query("UPDATE avion SET estado='ocupado' WHERE idavion=". $recibir);
 if ($estado=='libre') {
 
 ?>
-			<form method="POST" action="">
+			  <form action="" id="f1" name="f1" method="post" class="form-register" >
+                    <input type="hidden" name="tirar" id="pase"/>
 
 				<div class="row form-group">
 					<div class="col-sm-3">
 						<label class="control-label" style="position:relative; top:7px;"><b>Matricula:</b></label>
 					</div>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="matriculaEditar" value="<?php echo $estado;?>">
+						<input type="text" class="form-control" name="matriculaEditar" value="<?php echo $matricula;?>">
 					</div>
 				</div>
 
@@ -114,7 +116,9 @@ if ($estado=='libre') {
 				</div>
 
 				<div class="modal-footer">
+				<a href="liberar.php?ir=<?php echo $recibir;?>">
 				<button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+			    </a>
 				
                 <button type="submit" name="editar" class="btn btn-success"><span class="glyphicon glyphicon-check"></span> Actualizar Ahora</button>
 
@@ -132,14 +136,28 @@ if ($estado=='libre') {
 					
 				</div>
 			<?php
-			sleep(10);
+			//sleep(10);
 			echo '<script>location.href="verAvionesSerializable.php";</script>';
 		   }
 			?>		
 				</div>
 				
 			</div>
+        <?php
+		if (isset($_REQUEST['tirar'])) {
+	include_once'conexion.php';
 
+	 $matricula= $_REQUEST['matriculaEditar'];
+	 $connect->query("UPDATE avion SET estado='libre',matricula='$matricula' WHERE idavion=". $recibir);
+
+
+          }
+
+
+
+
+
+        ?>
 
 			
 		</div>
