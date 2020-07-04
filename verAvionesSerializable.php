@@ -7,9 +7,9 @@
   <meta charset="utf-8">
   <title>Base de datos</title>
   
-
+    <link rel="shortcut icon" href="#" />  
   
-  <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/magnific-popup.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -31,6 +31,10 @@
     <link rel="stylesheet" type="text/css" href="librerias/alertify/css/alertify.css">
     <link rel="stylesheet" type="text/css" href="librerias/alertify/alertify.min.js">
 
+   
+   <link rel="stylesheet" type="text/css" href="plugins/animate.css/animate.css">
+   <link rel="stylesheet" type="text/css" href="plugins/sweetAlert2/sweetalert2.min.css">
+
 
 
 </head>
@@ -40,7 +44,29 @@
 
 <?php include_once('barraNavegacion.php') ?>
 
+  
 
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-md-4">
+      <button type="" class="btn btn-primary btn btn-raised btn-info btn-lg">Commit</button>
+    </div>
+
+     <div class="col-md-4">
+       <button type="" class="btn btn-primary btn btn-raised btn-success btn-lg">SavePoint</button>
+    </div>
+
+     <div class="col-md-4">
+      <button type=""  class="btn btn-primary btn btn-raised btn-danger btn-lg">Rollback</button>  
+    </div>
+    
+  </div>
+  
+</div>
+        
 
 
 
@@ -69,7 +95,7 @@
     ?>
       
           <tr>
-           
+                     
                      <td><?php echo $row['matricula'];?></td>
                      <td><?php echo $row['fabricante'];?></td>
                      <td><?php echo $row['modelo'];?></td>
@@ -114,7 +140,10 @@
     <script src="js/plugins.js"></script>
     <script src="js/gijgo.min.js"></script>
     <script src="js/slick.min.js"></script>
-   
+
+    
+    <script src="plugins/sweetAlert2/sweetalert.min.js"></script>
+    <script src="plugins/sweetAlert2/sweetalert2.all.min.js"></script>
 
     
   

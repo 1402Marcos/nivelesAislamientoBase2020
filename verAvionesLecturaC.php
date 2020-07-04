@@ -40,7 +40,26 @@
 
 <?php include_once('barraNavegacion.php') ?>
 
+<div class="container">
 
+  <div class="row">
+
+    <div class="col-md-4">
+      <button type="" class="btn btn-primary btn btn-raised btn-info btn-lg">Commit</button>
+    </div>
+
+     <div class="col-md-4">
+       <button type="" class="btn btn-primary btn btn-raised btn-success btn-lg">SavePoint</button>
+    </div>
+
+     <div class="col-md-4">
+      <button type=""  class="btn btn-primary btn btn-raised btn-danger btn-lg">Rollback</button>  
+    </div>
+    
+  </div>
+  
+</div>
+        
 
 
 
