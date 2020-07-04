@@ -29,7 +29,12 @@
 <link rel="stylesheet" type="text/css" href="librerias/alertify/css/alertify.css">
 <link rel="stylesheet" type="text/css" href="librerias/alertify/alertify.min.js">
 
-    <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="plugins/sweetAlert2/sweetalert2.min.css">  
+      
+    <link rel="stylesheet" href="plugins/animate.css/animate.css">  
+	
+
+
 </head>
 <body>
 	<?php
@@ -42,13 +47,14 @@
 $recibir=$_GET['ir'];
 
  $query=$connect->query("SELECT * FROM avion WHERE idavion=".$recibir);
+
      while($row = mysqli_fetch_array($query)) {
      	$estado=$row['estado'];
      	$matricula=$row['matricula'];
 
      	}
 
-$connect->query("UPDATE avion SET estado='ocupado' WHERE idavion=". $recibir);
+$connect->query("UPDATE avion SET estado='ocupado' WHERE idavion=".$recibir);
 
 ?>
 
@@ -69,6 +75,7 @@ if ($estado=='libre') {
 ?>
 			  <form action="" id="f1" name="f1" method="post" class="form-register" >
                     <input type="hidden" name="tirar" id="pase"/>
+
 
 				<div class="row form-group">
 					<div class="col-sm-3">
@@ -131,13 +138,15 @@ if ($estado=='libre') {
 			?>
 			<div class="row form-group">
 					<div class="col-sm-3">
-						<label class="control-label" style="position:relative; top:7px;"><b>Espera........</b></label>
+						<label class="control-label" style="position:relative; top:7px;"><b><script>function()</script></b></label>
 					</div>
 					
 				</div>
 			<?php
 			//sleep(10);
 			echo '<script>location.href="verAvionesSerializable.php";</script>';
+
+
 		   }
 			?>		
 				</div>
@@ -168,10 +177,23 @@ if ($estado=='libre') {
 
 
 
+<script>
+    
+    jQuery(function(){
+
+        swall({
+            title: "Esta fila esta en uso",
+            text: "Por favor, espere a que se libere",
+            type: "success",
+        },
+        function(){
+            window.location.href="verAvionesSerializable.php";
+        })
+    });
+</script>
 
 
-
-	  <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+	 <script src="js/vendor/modernizr-3.5.0.min.js"></script>
     <script src="js/vendor/jquery-1.12.4.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -198,10 +220,13 @@ if ($estado=='libre') {
     <script src="librerias/materialbootstrap/bootstrap-material-design.js"></script>
 
 
-   
+    <script src="plugins/sweetAlert2/sweetalert.min.js"></script>
+    <script src="plugins/sweetAlert2/sweetalert2.all.min.js"></script>
 
-    
-  
+ 
+
+
+
 
     <script src="js/main.js"></script>
     <script>

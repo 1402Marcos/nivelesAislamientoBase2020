@@ -87,32 +87,6 @@
   </div>
 
 
-
-
-
-  <div class="card">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">ACIONES</h5>
-
-  
-        
-
-     
-        <div class="col-md-12"><button type="" class="btn btn-primary btn btn-raised btn-info btn-lg">Commit</button></div>
-
-        <div class="col-md-12"> <button type="" class="btn btn-primary btn btn-raised btn-success btn-lg">SavePoint</button></div>
-
-        <div class="col-md-12"><button type=""  class="btn btn-primary btn btn-raised btn-danger btn-lg">Rollback</button></div> 
-      </div>
-   
-    <div class="card-footer">
-      <small class="text-muted">Ejecutar cualquiera de estas acciones</small>
-    </div>
-  </div>
-
-
-
 </div>
 
 
