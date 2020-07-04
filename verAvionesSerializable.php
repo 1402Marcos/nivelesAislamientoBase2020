@@ -46,7 +46,7 @@
 
 <!-- TABLA -->
     <!-- TABLA PARA LECTURA COMPROMETIDA-->
-    
+   
                <table class="table table-bordered table-striped text-center" style="margin-top:20px;">
                   <thead>
                   <tr class="table-info">
@@ -61,23 +61,31 @@
                  </tr>
            </thead>
        <tbody>
-    
+     <?php
+    include_once'conexion.php';
+
+    $ver=$connect->query("SELECT * FROM avion ");
+     while($row = mysqli_fetch_array($ver)) {
+    ?>
       
           <tr>
            
-                     <td></td>
-                     <td></td>
-                     <td></td>
-                     <td></td>
-                     <td></td>            
+                     <td><?php echo $row['matricula'];?></td>
+                     <td><?php echo $row['fabricante'];?></td>
+                     <td><?php echo $row['modelo'];?></td>
+                     <td><?php echo $row['capcidad'];?></td>
+                     <td><?php echo $row['precio'];?></td>            
                     <td>
-                       <a href="editarAvionSerializable.php" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-edit"></span> 
+                       <a href="editarAvionSerializable.php?ir=<?php echo $row['idavion'];?>" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-edit"></span> 
                         Editar
                        </a>
 
               
                       <a href="#" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Borrar</a>
                     </td>
+                    <?php
+                }
+                    ?>
           
           </tr>
         

@@ -32,8 +32,24 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+	<?php
+ include_once('barraNavegacion.php') ;
+	?>
 
-<?php include_once('barraNavegacion.php') ?>
+<?php
+
+ include_once'conexion.php';
+$recibir=$_GET['ir'];
+
+ $query=$connect->query("SELECT * FROM avion WHERE idavion=".$recibir);
+     while($row = mysqli_fetch_array($query)) {
+     	$estado=$row['estado'];
+
+     	}
+
+$connect->query("UPDATE avion SET estado='ocupado' WHERE idavion=". $recibir);
+
+?>
 
 <div class="container">
 
@@ -46,7 +62,10 @@
 				</div>
 				<div class="card-body">
 
+<?php
+if ($estado=='libre') {
 
+?>
 			<form method="POST" action="">
 
 				<div class="row form-group">
@@ -54,7 +73,7 @@
 						<label class="control-label" style="position:relative; top:7px;"><b>Matricula:</b></label>
 					</div>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="matriculaEditar" value="">
+						<input type="text" class="form-control" name="matriculaEditar" value="<?php echo $estado;?>">
 					</div>
 				</div>
 
@@ -97,12 +116,26 @@
 				<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
 				
-                <button type="submit" name="editar" class="btn btn-success"><span class="glyphicon glyphicon-check"></span> Actualizar Ahora</a></button>
+                <button type="submit" name="editar" class="btn btn-success"><span class="glyphicon glyphicon-check"></span> Actualizar Ahora</button>
 
 				</div>
 
 			</form>
+
+			<?php
+		}else{
+			?>
+			<div class="row form-group">
+					<div class="col-sm-3">
+						<label class="control-label" style="position:relative; top:7px;"><b>Espera........</b></label>
+					</div>
 					
+				</div>
+			<?php
+			sleep(10);
+			echo '<script>location.href="verAvionesSerializable.php";</script>';
+		   }
+			?>		
 				</div>
 				
 			</div>
