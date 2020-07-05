@@ -41,6 +41,12 @@
  include_once'conexion.php';
 $recibir=$_GET['ir'];
 
+session_start();
+if (isset($_SESSION['contador'])) {
+    $_SESSION['contador']=$_SESSION['contador']+1;
+    $mensaje=$_SESSION['contador'];
+}
+
  $query=$connect->query("SELECT * FROM vuelo INNER JOIN avion ON vuelo.idavion=avion.idavion WHERE idvuelo=".$recibir);
 
      while($row = mysqli_fetch_array($query)) {
@@ -152,8 +158,8 @@ if ($estado=='libre') {
         $idavio= $_REQUEST['selec'];
         $orige= $_REQUEST['origenEditar'];
         $destin= $_REQUEST['destinoEditar'];
-        
         $connect->query("UPDATE vuelo SET estado='libre', idavion='$idavio',origen='$orige',destino='$destin' WHERE idvuelo=". $recibir);
+
           echo '<script>location.href="verVueloSerializable.php";</script>';
 
 

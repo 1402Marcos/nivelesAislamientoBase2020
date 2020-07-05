@@ -52,7 +52,9 @@
     </div>
 
      <div class="col-md-4">
-       <button type="" class="btn btn-primary btn btn-raised btn-success btn-lg">SavePoint</button>
+      <a href="save_pointVuelo.php">
+       <button type="button" id="btnSave_point" class="btn btn-primary btn btn-raised btn-success btn-lg">SavePoint</button>
+     </a>
     </div>
 
      <div class="col-md-4">
@@ -146,6 +148,7 @@
              rightIcon: '<span class="fa fa-caret-down"></span>'
          }
         });
+
     </script>
 
     <script src="librerias/jquery-3.2.1.min.js"></script>
