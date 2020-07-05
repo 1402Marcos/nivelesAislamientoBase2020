@@ -51,6 +51,12 @@ $recibir=$_GET['ir'];
      while($row = mysqli_fetch_array($query)) {
      	$estado=$row['estado'];
      	$matricula=$row['matricula'];
+     	$fabricante=$row['fabricante'];
+     	$modelo=$row['modelo'];
+     	$capacidad=$row['capacidad'];
+     	$precio=$row['precio'];
+
+
 
      	}
 
@@ -91,7 +97,7 @@ if ($estado=='libre') {
 						<label class="control-label" style="position:relative; top:7px;"><b>Fabricante:</b></label>
 					</div>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="fabricanteEditar" value="">
+						<input type="text" class="form-control" name="fabricanteEditar" value="<?php echo $fabricante;?>">
 					</div>
 				</div>
 
@@ -100,7 +106,7 @@ if ($estado=='libre') {
 						<label class="control-label" style="position:relative; top:7px;"><b>Modelo:</b></label>
 					</div>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="modeloEditar" value="">
+						<input type="text" class="form-control" name="modeloEditar" value="<?php echo $modelo;?>">
 					</div>
 				</div>
 
@@ -109,7 +115,7 @@ if ($estado=='libre') {
 						<label class="control-label" style="position:relative; top:7px;"><b>Capacidad:</b></label>
 					</div>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="capacidadEditar" value="">
+						<input type="text" class="form-control" name="capacidadEditar" value="<?php echo $capacidad;?>">
 					</div>
 				</div>
 
@@ -118,13 +124,13 @@ if ($estado=='libre') {
 						<label class="control-label" style="position:relative; top:7px;"><b>Precio:</b></label>
 					</div>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="precioEditar" value="">
+						<input type="text" class="form-control" name="precioEditar" value="<?php echo $precio;?>">
 					</div>
 				</div>
 
 				<div class="modal-footer">
 				<a href="liberar.php?ir=<?php echo $recibir;?>">
-				<button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+				<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
 			    </a>
 				
                 <button type="submit" name="editar" class="btn btn-success"><span class="glyphicon glyphicon-check"></span> Actualizar Ahora</button>
@@ -138,12 +144,12 @@ if ($estado=='libre') {
 			?>
 			<div class="row form-group">
 					<div class="col-sm-3">
-						<label class="control-label" style="position:relative; top:7px;"><b><script>function()</script></b></label>
+						<label class="control-label" style="position:relative; top:7px;"><b></b></label>
 					</div>
 					
 				</div>
 			<?php
-			//sleep(10);
+			sleep(10);
 			echo '<script>location.href="verAvionesSerializable.php";</script>';
 
 
@@ -154,10 +160,14 @@ if ($estado=='libre') {
 			</div>
         <?php
 		if (isset($_REQUEST['tirar'])) {
-	include_once'conexion.php';
+	   include_once'conexion.php';
 
-	 $matricula= $_REQUEST['matriculaEditar'];
-	 $connect->query("UPDATE avion SET estado='libre',matricula='$matricula' WHERE idavion=". $recibir);
+	    $matricula= $_REQUEST['matriculaEditar'];
+	    $fabricant= $_REQUEST['fabricanteEditar'];
+	    $model= $_REQUEST['modeloEditar'];
+	    $capacida= $_REQUEST['capacidadEditar'];
+	    $preci= $_REQUEST['precioEditar'];
+	    $connect->query("UPDATE avion SET estado='libre',matricula='$matricula',fabricante='$fabricant',modelo='$model',capacidad=$capacida,precio=$preci WHERE idavion=". $recibir);
 
 
           }

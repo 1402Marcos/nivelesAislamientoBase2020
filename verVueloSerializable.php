@@ -80,22 +80,31 @@
                  </tr>
            </thead>
        <tbody>
+        <?php
+    include_once'conexion.php';
+
+    $ver=$connect->query("SELECT * FROM vuelo");
+     while($row = mysqli_fetch_array($ver)) {
+    ?>
     
       
           <tr>
            
-                     <td></td>
-                     <td></td>
-                     <td></td>
+                     <td><?php echo $row['idavion']; ?></td>
+                     <td><?php echo $row['origen']; ?></td>
+                     <td><?php echo $row['destino']; ?></td>
                                
                     <td>
-                       <a href="editarVuelosSerializable.php" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-edit"></span> 
+                       <a href="editarVuelosSerializable.php?ir=<?php echo $row['idvuelo'];?>" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-edit"></span> 
                         Editar
                        </a>
 
               
                       <a href="#" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Borrar</a>
                     </td>
+                     <?php
+                }
+                    ?>
           
           </tr>
         

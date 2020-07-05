@@ -99,7 +99,7 @@
                      <td><?php echo $row['matricula'];?></td>
                      <td><?php echo $row['fabricante'];?></td>
                      <td><?php echo $row['modelo'];?></td>
-                     <td><?php echo $row['capcidad'];?></td>
+                     <td><?php echo $row['capacidad'];?></td>
                      <td><?php echo $row['precio'];?></td>            
                     <td>
                        <a href="editarAvionSerializable.php?ir=<?php echo $row['idavion'];?>" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-edit"></span> 
