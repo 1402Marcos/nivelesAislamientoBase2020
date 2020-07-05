@@ -41,10 +41,12 @@
  include_once'conexion.php';
 $recibir=$_GET['ir'];
 
- $query=$connect->query("SELECT * FROM vuelo WHERE idvuelo=".$recibir);
+ $query=$connect->query("SELECT * FROM vuelo INNER JOIN avion ON vuelo.idavion=avion.idavion WHERE idvuelo=".$recibir);
 
      while($row = mysqli_fetch_array($query)) {
         $estado=$row['estado'];
+        $matricula=$row['matricula'];
+        $modelo=$row['modelo'];
         $idvuelo=$row['idvuelo'];
         $idavion=$row['idavion'];
         $origen=$row['origen'];
@@ -84,7 +86,7 @@ if ($estado=='libre') {
 					</div>
 					<div class="col-sm-9">
 						<select name="selec" id="idavio" class="form-control">
-                        <option value="pri" class="disabled">Aviones disponibles</option>
+                        <option value="<?php echo $idavion;?>" class="disabled"><?php echo $matricula.' '.$modelo;?></option>
                               <?php
                               include_once('conexion.php');
                                     $aviones = mysqli_query($connect, "SELECT * FROM avion");
@@ -134,7 +136,7 @@ if ($estado=='libre') {
                     
                 </div>
             <?php
-            sleep(10);
+            sleep(5);
             echo '<script>location.href="verVueloSerializable.php";</script>';
 
 
@@ -151,7 +153,8 @@ if ($estado=='libre') {
         $orige= $_REQUEST['origenEditar'];
         $destin= $_REQUEST['destinoEditar'];
         
-        $connect->query("UPDATE vuelo SET estado='libre',idavion=$idavio,origen='$orige',destino='$destin' WHERE idvuelo=". $recibir);
+        $connect->query("UPDATE vuelo SET estado='libre', idavion='$idavio',origen='$orige',destino='$destin' WHERE idvuelo=". $recibir);
+          echo '<script>location.href="verVueloSerializable.php";</script>';
 
 
           }
