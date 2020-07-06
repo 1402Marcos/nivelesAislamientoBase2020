@@ -58,7 +58,9 @@
     </div>
 
      <div class="col-md-4">
-      <button type=""  class="btn btn-primary btn btn-raised btn-danger btn-lg">Rollback</button>  
+      <a href="rollbackVuelo.php">
+      <button type="button"  class="btn btn-primary btn btn-raised btn-danger btn-lg">Rollback</button> 
+      </a> 
     </div>
     
   </div>

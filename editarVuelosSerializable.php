@@ -41,12 +41,6 @@
  include_once'conexion.php';
 $recibir=$_GET['ir'];
 
-session_start();
-if (isset($_SESSION['contador'])) {
-    $_SESSION['contador']=$_SESSION['contador']+1;
-    $mensaje=$_SESSION['contador'];
-}
-
  $query=$connect->query("SELECT * FROM vuelo INNER JOIN avion ON vuelo.idavion=avion.idavion WHERE idvuelo=".$recibir);
 
      while($row = mysqli_fetch_array($query)) {
