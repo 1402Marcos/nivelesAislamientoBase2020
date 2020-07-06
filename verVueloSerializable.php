@@ -48,7 +48,9 @@
   <div class="row">
 
     <div class="col-md-4">
+      <a href="commit_vuelo.php">
       <button type="" class="btn btn-primary btn btn-raised btn-info btn-lg">Commit</button>
+    </a>
     </div>
 
      <div class="col-md-4">
