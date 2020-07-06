@@ -2,18 +2,19 @@
 session_start();
 
 include_once'conexion.php';
-$query=$connect->query("SELECT * FROM vuelo ORDER BY idvuelo DESC LIMIT 1");
+$ver=$connect->query("SELECT COUNT(id)as cuantos FROM save_point_vuelo");
 
-     while($row = mysqli_fetch_array($query)) {
+ while($row2 = mysqli_fetch_array($ver)) {
+     $validar=$row2['cuantos'];
+  }
 
-       $row['idvuelo']=$_SESSION['idvuelo'];
-      }
-
-if (isset($_SESSION['idvuelo'])) {
-    $_SESSION['idvuelo']=$_SESSION['idvuelo']+1;
-    $cuenta=$_SESSION['idvuelo'];
-   
-}
+  if ($validar==0) {
+  	//No hay puntos entonces
+  	$cuenta=1;
+ 
+  }else{
+  	$cuenta=$validar+1;
+  }
 
 
 

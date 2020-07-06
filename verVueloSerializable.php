@@ -1,6 +1,4 @@
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +33,6 @@
 
 </head>
 <body>
-    p
 
 <!-- BARRA DE NAVEGACION -->
 
