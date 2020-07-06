@@ -5,13 +5,16 @@ include_once'conexion.php';
 $query=$connect->query("SELECT * FROM vuelo ORDER BY idvuelo DESC LIMIT 1");
 
      while($row = mysqli_fetch_array($query)) {
-       $_SESSION['idvuelo'];
-        }
+
+       $row['idvuelo']=$_SESSION['idvuelo'];
+      }
 
 if (isset($_SESSION['idvuelo'])) {
     $_SESSION['idvuelo']=$_SESSION['idvuelo']+1;
     $cuenta=$_SESSION['idvuelo'];
+   
 }
+
 
 
  //guardar punto de restauracion
