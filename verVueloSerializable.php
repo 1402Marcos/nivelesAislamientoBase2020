@@ -103,7 +103,7 @@
                        </a>
 
               
-                      <a href="#" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Borrar</a>
+                      <a href="BorrarVueloSerializable.php?matar=<?php echo $row['idvuelo']; ?>" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Borrar</a>
                     </td>
                      <?php
                 }
