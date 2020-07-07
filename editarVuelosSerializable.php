@@ -152,7 +152,26 @@ if ($estado=='libre') {
         $idavio= $_REQUEST['selec'];
         $orige= $_REQUEST['origenEditar'];
         $destin= $_REQUEST['destinoEditar'];
+
+        //para que funciones tenemos que verificar si el punto cero no esta guardado
+        //porq si lo esta ya tenemos la concistencia guardada
+        $ver=$connect->query("SELECT * FROM save_point_vuelo WHERE puntos=0");
+
+        while($row2 = mysqli_fetch_array($ver)) {
+          $validar=$row2['puntos'];
+            }
+        if ($validar==0) {
+           //no hacer nada porque ya esta guardada y si no guardar
+        }else{
+        //como le dio editar vamos a guardar la concistencia de la base has ese punto
+        //por si quiere dar rollback
+         $connect->query("INSERT INTO save_point_vuelo(id_vuelo,idavion,origen,destino, estado,puntos)
+        SELECT idvuelo,idavion,origen,destino,'libre',0 FROM vuelo");
+        //fin de guardar la concistencia de la base
+        }
+
         $connect->query("UPDATE vuelo SET estado='libre', idavion='$idavio',origen='$orige',destino='$destin' WHERE idvuelo=". $recibir);
+
 
           echo '<script>location.href="verVueloSerializable.php";</script>';
 
