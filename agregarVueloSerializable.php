@@ -35,6 +35,7 @@
 
 <?php include_once('barraNavegacion.php') ?>
 
+
 <div class="container">
 
 	<div class="row">
@@ -47,19 +48,26 @@
 				<div class="card-body">
 
 
-			<form method="POST" action="">
+			<form method="POST" action="agregarVueloSerializable.php">
+            
 
 				<div class="row form-group">
 					<div class="col-sm-3">
 						<label class="control-label" style="position:relative; top:7px;"><b>Avion:</b></label>
 					</div>
 					<div class="col-sm-9">
-						<select name="idavion" id="idcategoria" class="form-control">
-                              <option value="00" disabled="idavion">Seleccionar avion</option>
-                              <option value="00">Seleccionar avion</option>
-                              <option value="00">MFNSF</option>
-                              <option value="00">JNSKJN</option>
- 
+                    <label>Selecciones avones</label>
+						<select name="avion" id="idavion" class="form-control">
+                        <option value="pri">Aviones disponibles:</option>
+                              <?php
+                                    include_once('conexion.php');
+                                    $aviones = mysqli_query($connect, "SELECT * FROM avion");
+                                    while ($row = mysqli_fetch_array($aviones)) {
+
+                                 echo '<option value='. "$row[idavion]". '> '. $row['1']. '&nbsp&nbsp&nbsp&nbsp'. $row['3']. '</option>';
+                              
+                               }
+                                    ?> 
                       </select> 
 					</div>
 				</div>
@@ -69,7 +77,7 @@
 						<label class="control-label" style="position:relative; top:7px;"><b>Pais origen:</b></label>
 					</div>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="fabricante">
+						<input type="text" class="form-control" name="origen">
 					</div>
 				</div>
 
@@ -78,7 +86,7 @@
 						<label class="control-label" style="position:relative; top:7px;"><b>Pais destino:</b></label>
 					</div>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="modelo">
+						<input type="text" class="form-control" name="destino">
 					</div>
 				</div>
 
@@ -87,7 +95,9 @@
          
 			
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+                <a href="vistaSerializable.php">
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+                </a>
                 <button type="submit" name="agregar" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar Registro</button>
                </div>
 			</form>
@@ -103,7 +113,6 @@
 	</div>
 	
 </div>
-
 
 
 
@@ -153,3 +162,21 @@
 	
 </body>
 </html>
+
+
+<?php 
+include_once('conexion.php');
+if (isset($_POST['agregar'])) {
+    
+    $avion=$_POST['avion'];
+    $origen=$_POST['origen'];
+    $destino=$_POST['destino'];
+
+    mysqli_query($connect, "INSERT INTO vuelo(idavion,origen,destino)
+    Values($avion,'$origen','$destino')");
+   
+
+    echo '<script>location.href="verVueloSerializable.php";</script>';
+}
+
+ ?>

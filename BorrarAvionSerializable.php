@@ -47,7 +47,7 @@
 				<div class="card-body">
 
 
-			<form method="POST" action="agregarAvionSerializable.php">
+			<form method="POST" action="BorrarAvionSerializable.php">
 
 				<div class="row form-group">
 					<div class="col-sm-3">
@@ -95,14 +95,6 @@
 				</div>
 				
 				
-         
-			
-            <div class="modal-footer">
-            	<a href="vistaSerializable.php">
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
-                </a>
-                <button type="submit" name="agregar" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar Registro</button>
-                </div>
 			</form>
 					
 				</div>
@@ -165,23 +157,15 @@
 </body>
 </html>
 
-
+<!-- ELIMINAR AVIONES-->
 <?php 
+include_once('dbconect.php');
+if (isset($_GET['matar'])) {
 
-include_once('conexion.php');
-if (isset($_POST['agregar'])) {
-	
-	$matricula=$_POST['matricula'];
-	$fabricante=$_POST['fabricante'];
-	$modelo=$_POST['modelo'];
-	$capacidad=$_POST['capacidad'];
-	$precio = $_POST['precio'];
-
-	mysqli_query($connect, "INSERT INTO avion(matricula,fabricante,modelo,capacidad,precio)
-	VALUES('$matricula','$fabricante','$modelo',$capacidad,$precio)");
-               
-
-    
+ 
+ $matar = "DELETE FROM avion WHERE idavion = '".$_GET['matar']."'";
+sqlsrv_query($conn,$matar);
+   
 
     echo '<script>location.href="verAvionesSerializable.php";</script>';
 }

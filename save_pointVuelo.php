@@ -2,7 +2,7 @@
 session_start();
 
 include_once'conexion.php';
-$ver=$connect->query("SELECT COUNT(id)as cuantos FROM save_point_vuelo");
+$ver=$connect->query("SELECT COUNT(id) as cuantos FROM save_point_vuelo");
 
  while($row2 = mysqli_fetch_array($ver)) {
      $validar=$row2['cuantos'];

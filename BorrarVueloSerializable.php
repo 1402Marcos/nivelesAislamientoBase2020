@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta charset="utf-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
   <title>Base de datos</title>
   
 
@@ -35,92 +35,79 @@
 
 <?php include_once('barraNavegacion.php') ?>
 
+
 <div class="container">
 
-	<div class="row">
+    <div class="row">
 
-		<div class="col-md-6 offset-md-3">
-			<div class="card">
-				<div class="card-body text-center">
-					<h3>Ingresar Avion</h3>					
-				</div>
-				<div class="card-body">
-
-
-			<form method="POST" action="agregarAvionSerializable.php">
-
-				<div class="row form-group">
-					<div class="col-sm-3">
-						<label class="control-label" style="position:relative; top:7px;"><b>Matricula:</b></label>
-					</div>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="matricula">
-					</div>
-				</div>
-
-				<div class="row form-group">
-					<div class="col-sm-3">
-						<label class="control-label" style="position:relative; top:7px;"><b>Fabricante:</b></label>
-					</div>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="fabricante">
-					</div>
-				</div>
-
-				<div class="row form-group">
-					<div class="col-sm-3">
-						<label class="control-label" style="position:relative; top:7px;"><b>Modelo:</b></label>
-					</div>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="modelo">
-					</div>
-				</div>
-
-				<div class="row form-group">
-					<div class="col-sm-3">
-						<label class="control-label" style="position:relative; top:7px;"><b>Capacidad:</b></label>
-					</div>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="capacidad">
-					</div>						
-				</div>
-
-				<div class="row form-group">
-					<div class="col-sm-3">
-						<label class="control-label" style="position:relative; top:7px;"><b>Precio:</b></label>
-					</div>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="precio">
-					</div>						
-				</div>
-				
-				
-         
-			
-            <div class="modal-footer">
-            	<a href="vistaSerializable.php">
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
-                </a>
-                <button type="submit" name="agregar" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar Registro</button>
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h3>Ingresar vuelo</h3>                 
                 </div>
-			</form>
-					
-				</div>
-				
-			</div>
+                <div class="card-body">
 
 
-			
-		</div>
-		
-	</div>
-	
+            <form method="POST" action="BorrarVueloSerializable.php">
+            
+                <div class="row form-group">
+                    <div class="col-sm-3">
+                        <label class="control-label" style="position:relative; top:7px;"><b>Avion:</b></label>
+                    </div>
+                    <div class="col-sm-9">
+                    <label>Selecciones avones</label>
+                        <select name="avion" id="idavion" class="form-control">
+                        <option value="pri"></option>
+                              <?php
+                                    include_once('dbconect.php');
+                                    $aviones = sqlsrv_query($conn, "SELECT * FROM avion");
+                                    while ($row = sqlsrv_fetch_array($aviones)) {
+
+                                 echo '<option value='. "$row[idavion]". '> '. $row['1']. '&nbsp&nbsp&nbsp&nbsp'. $row['3']. '</option>';
+                              
+                               }
+                                    ?> 
+                      </select> 
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-sm-3">
+                        <label class="control-label" style="position:relative; top:7px;"><b>Pais origen:</b></label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="origen">
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-sm-3">
+                        <label class="control-label" style="position:relative; top:7px;"><b>Pais destino:</b></label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="destino">
+                    </div>
+                </div>
+
+            </form>
+                    
+                </div>
+                
+            </div>
+
+
+            
+        </div>
+        
+    </div>
+    
 </div>
 
 
 
 
-	  <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+
+      <script src="js/vendor/modernizr-3.5.0.min.js"></script>
     <script src="js/vendor/jquery-1.12.4.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -161,29 +148,20 @@
          }
         });
     </script>
-	
+    
 </body>
 </html>
 
-
+<!-- ELIMINAR VUELOS-->
 <?php 
+include_once('dbconect.php');
+if (isset($_GET['matar'])) {
+ 
+ $matar = "DELETE FROM vuelo WHERE idvuelo = '".$_GET['matar']."'";
+sqlsrv_query($conn,$matar);
+   
 
-include_once('conexion.php');
-if (isset($_POST['agregar'])) {
-	
-	$matricula=$_POST['matricula'];
-	$fabricante=$_POST['fabricante'];
-	$modelo=$_POST['modelo'];
-	$capacidad=$_POST['capacidad'];
-	$precio = $_POST['precio'];
-
-	mysqli_query($connect, "INSERT INTO avion(matricula,fabricante,modelo,capacidad,precio)
-	VALUES('$matricula','$fabricante','$modelo',$capacidad,$precio)");
-               
-
-    
-
-    echo '<script>location.href="verAvionesSerializable.php";</script>';
+    echo '<script>location.href="verVueloSerializable.php";</script>';
 }
 
  ?>
