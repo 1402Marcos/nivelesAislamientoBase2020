@@ -137,7 +137,7 @@ if ($estado=='libre') {
                 </div>
             <?php
             //sleep(5);
-            echo '<script>location.href="verVueloSerializable.php";</script>';
+            //echo '<script>location.href="verVueloSerializable.php";</script>';
 
 
            }
